@@ -1,9 +1,10 @@
 #!/bin/bash
+echo "**********************************************************************"
+echo "copying apache configuration to sites-avialable..."
+sudo cp /home/khannegan/website/apache2/website.conf /etc/apache2/sites-available/website.conf
+echo "**********************************************************************"
 echo "moving webiste to sites-available..."
 sudo a2ensite website
-echo "**********************************************************************"
-echo "disabling default sites..."
-sudo a2dissite 000-default default-ssl
 echo "**********************************************************************"
 echo "restarting server..."
 sudo service apache2 restart
