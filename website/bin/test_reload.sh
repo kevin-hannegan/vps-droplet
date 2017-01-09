@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "**********************************************************************"
 echo "copying apache configuration to sites-avialable..."
-sudo cp /home/khannegan/website/apache2/testsite.conf /etc/apache2/sites-available/testsite.conf
+sudo cp /home/khannegan/apps/website/apache2/testsite.conf /etc/apache2/sites-available/testsite.conf
 echo "**********************************************************************"
 echo "enabling test configuration..."
 sudo a2ensite testsite

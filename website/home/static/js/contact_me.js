@@ -10,26 +10,23 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
+            data = {
+                name : $("input#name").val(),
+                email :  $("input#email").val(),
+                message : $("textarea#message").val()
+            }
             var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
+            
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
-                type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
-                },
-                cache: false,
-                success: function() {
+                url: '/message/',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=UTF-8',
+                success: function(response) {
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -41,6 +38,7 @@ $(function() {
 
                     //clear all fields
                     $('#contactForm').trigger("reset");
+                    console.log(response)
                 },
                 error: function() {
                     // Fail message
